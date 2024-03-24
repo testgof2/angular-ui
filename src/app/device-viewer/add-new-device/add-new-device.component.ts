@@ -20,7 +20,7 @@ export class AddNewDeviceComponent {
   }
 
   addNewDevice() {
-    this.http.post(`${ApiUrls.interface}:7138/settings`, this.model).subscribe(_ => {
+    this.http.post(`${ApiUrls.interface}/settings`, this.model).subscribe(_ => {
       this.created.emit();
     });
 
