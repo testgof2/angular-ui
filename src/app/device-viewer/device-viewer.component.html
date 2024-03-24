@@ -1,0 +1,21 @@
+<div style="display: flex; flex-direction: row;">
+    <mat-card style="min-width: 50%;">
+        <div style="display: flex; flex-direction: column;">
+            <mat-selection-list [multiple]="false">
+                <mat-list-option (click)="setSelection(device)" *ngFor="let device of devices" [value]="device">
+                    {{device.name}}
+                </mat-list-option>
+            </mat-selection-list>
+    
+            <button mat-raised-button (click)="toggleNewDeviceAddition()"> Add New Device </button>
+            <app-add-new-device (created)="created()" *ngIf="newDeviceAddition"></app-add-new-device>
+        </div>
+    </mat-card>
+    <mat-card *ngIf="selectedDevice">
+        <app-device-details (newDataSentEmitter)="newDataSent()" (deleteEmitter)="deleted()" [device]="selectedDevice"></app-device-details>
+    </mat-card>
+
+
+
+
+</div>

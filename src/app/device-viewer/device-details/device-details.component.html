@@ -1,0 +1,40 @@
+<div>
+  View the last 10 data elements and averages for this device, simulate the device sending data.
+</div>
+
+<ng-container *ngIf="device.latestData.length > 0">
+  <span> Latest Data: </span>
+  <div *ngFor="let an of device.dataAnnotations;let i = index">
+    <div> Latest {{an.name}} data. meassured in {{an.unit}} </div>
+    <span *ngFor="let data of device.latestData;let j = index">
+        {{data.values[i]}}
+    </span>
+    <ng-container *ngIf="device.analyzedData">
+      <div>Analyzed Data:</div>
+        Average: {{device.analyzedData[i].average}}
+        Median: {{device.analyzedData[i].median}}
+
+    </ng-container>
+
+</div>
+
+
+</ng-container>
+
+
+
+<div>
+    <button  mat-raised-button (click)="toggleSimulateData()"> Open emulating sending new data to device </button>
+    <div style="margin-top: 10px;" *ngIf="isEmulateSendingDataOpen">
+        <div *ngFor="let an of device.dataAnnotations;let i = index">
+              <div>
+                    <input [(ngModel)]="dataToSend[i]" type="number" [value]="0" >
+                    <span>  {{an.name}} meassured in {{an.unit}} </span>
+              </div>
+        </div>
+        <button style="color: red; margin-top: 20px;" mat-raised-button (click)="executeSendingData()">Send emulated data</button>
+    </div>
+</div>
+
+<button style="color: red; margin-top: 20px;" mat-raised-button (click)="delete()"> Delete device</button>
+

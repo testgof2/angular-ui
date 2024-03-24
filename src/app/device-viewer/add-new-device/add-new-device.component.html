@@ -1,0 +1,14 @@
+<div>
+  <span>
+    Register a new device
+  </span>
+  <div>
+    <input style="margin: 6px;" mat-input [(ngModel)]="model.name" placeholder="enter device name"/>
+  </div>
+  <div *ngFor="let data of model.dataAnnotations">
+    <input style="margin: 6px;" mat-input placeholder="Name"  [(ngModel)]="data.name" />
+    <input style="margin: 6px;" mat-input placeholder="Unit"  [(ngModel)]="data.unit" />
+  </div>
+   <button (click)="addNewDataAnnotation()"> Add new data type</button>
+   <button (click)="addNewDevice()"> Register new device </button>
+</div>
